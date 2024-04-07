@@ -1,7 +1,8 @@
 # Open Star Fighter
 
 A simple star fighter pilot game intended to be a starting point for the creation of other games.<br>
-XR/VR Pico4 version for Godot 4.1 (WIP)
+XR/VR Pico4 (standalone) version for Godot 4.1 (WIP)
+Controls: Thumpstick on both controllers, trigger for shoot.
 
 Pilot your star fighter at part of a team shooting down the enemy with blasters and missiles. First team to 30 kills wins. 
 Alternatively, test your maneuverability skills as you race to pass through all of the hoops as fast as you can.
