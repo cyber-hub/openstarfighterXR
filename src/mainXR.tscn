@@ -1,0 +1,65 @@
+[gd_scene load_steps=13 format=3 uid="uid://b3thfioobh1eb"]
+
+[ext_resource type="PackedScene" uid="uid://b4kad2kuba1yn" path="res://addons/godot-xr-tools/hands/scenes/lowpoly/left_hand_low.tscn" id="1_51fxh"]
+[ext_resource type="PackedScene" uid="uid://b6bk2pj8vbj28" path="res://addons/godot-xr-tools/functions/movement_turn.tscn" id="2_77kd5"]
+[ext_resource type="PackedScene" uid="uid://l2n30mpbkdyw" path="res://addons/godot-xr-tools/hands/scenes/lowpoly/right_hand_low.tscn" id="2_cs0pb"]
+[ext_resource type="PackedScene" uid="uid://cqhw276realc" path="res://addons/godot-xr-tools/functions/function_pointer.tscn" id="3_d377j"]
+[ext_resource type="PackedScene" uid="uid://clujaf3u776a3" path="res://addons/godot-xr-tools/objects/viewport_2d_in_3d.tscn" id="3_hkv7h"]
+[ext_resource type="PackedScene" uid="uid://rts75ra6b55m" path="res://src/menu_ui/main_menuXR.tscn" id="4_7f0np"]
+[ext_resource type="Texture2D" uid="uid://brscgvbyifk8k" path="res://src/environment/star_field_3.hdr" id="4_n4csl"]
+[ext_resource type="PackedScene" uid="uid://clc5dre31iskm" path="res://addons/godot-xr-tools/xr/start_xr.tscn" id="5_7aguo"]
+[ext_resource type="PackedScene" uid="uid://diyu06cw06syv" path="res://addons/godot-xr-tools/player/player_body.tscn" id="5_bdctf"]
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_rxgpv"]
+panorama = ExtResource("4_n4csl")
+
+[sub_resource type="Sky" id="Sky_xlos8"]
+sky_material = SubResource("PanoramaSkyMaterial_rxgpv")
+
+[sub_resource type="Environment" id="Environment_35y4d"]
+background_mode = 2
+sky = SubResource("Sky_xlos8")
+ambient_light_source = 2
+ambient_light_color = Color(0.741176, 0.741176, 0.741176, 1)
+reflected_light_source = 1
+tonemap_mode = 3
+adjustment_enabled = true
+adjustment_saturation = 1.5
+
+[node name="Node3D" type="Node3D"]
+
+[node name="XROrigin3D" type="XROrigin3D" parent="."]
+
+[node name="XRCamera3D" type="XRCamera3D" parent="XROrigin3D"]
+
+[node name="LeftController" type="XRController3D" parent="XROrigin3D"]
+tracker = &"left_hand"
+pose = &"aim"
+
+[node name="LeftHand" parent="XROrigin3D/LeftController" instance=ExtResource("1_51fxh")]
+
+[node name="MovementTurn" parent="XROrigin3D/LeftController" instance=ExtResource("2_77kd5")]
+
+[node name="RightController" type="XRController3D" parent="XROrigin3D"]
+tracker = &"right_hand"
+pose = &"aim"
+
+[node name="RightHand" parent="XROrigin3D/RightController" instance=ExtResource("2_cs0pb")]
+
+[node name="FunctionPointer" parent="XROrigin3D" instance=ExtResource("3_d377j")]
+
+[node name="PlayerBody" parent="XROrigin3D" instance=ExtResource("5_bdctf")]
+
+[node name="Viewport2Din3D" parent="." instance=ExtResource("3_hkv7h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -3)
+screen_size = Vector2(4, 3)
+viewport_size = Vector2(800, 600)
+scene = ExtResource("4_7f0np")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_35y4d")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="WorldEnvironment"]
+transform = Transform3D(0.861002, -0.301581, 0.409543, -0.0742119, 0.72212, 0.687776, -0.503159, -0.622569, 0.599365, 0, 0, 0)
+
+[node name="StartXR" parent="." instance=ExtResource("5_7aguo")]

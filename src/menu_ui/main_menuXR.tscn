@@ -1,0 +1,34 @@
+[gd_scene load_steps=5 format=3 uid="uid://rts75ra6b55m"]
+
+[ext_resource type="Script" path="res://src/menu_ui/mulit_page_ui/manager.gd" id="1_rp5d8"]
+[ext_resource type="PackedScene" uid="uid://dljbgec784dja" path="res://src/menu_ui/main_menu/home/home.tscn" id="2_vbhdj"]
+[ext_resource type="PackedScene" uid="uid://deltucmobo5dt" path="res://src/menu_ui/controls_page/controls_page.tscn" id="3_x788t"]
+[ext_resource type="PackedScene" uid="uid://db4u1b8ls86oi" path="res://src/menu_ui/settings_page/settings_page.tscn" id="4_ka4ck"]
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_rp5d8")
+
+[node name="Pages" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Home" parent="Pages" instance=ExtResource("2_vbhdj")]
+layout_mode = 1
+
+[node name="ControlsPage" parent="Pages" instance=ExtResource("3_x788t")]
+layout_mode = 1
+cords = Vector2(1, 0)
+_back_page_name = "Home"
+
+[node name="SettingsPage" parent="Pages" instance=ExtResource("4_ka4ck")]
+layout_mode = 1
