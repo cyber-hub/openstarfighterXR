@@ -54,11 +54,15 @@ func _on_ship_destroyed(ship: Ship) -> void:
 	if ship.team == Ship.Team.BLUE:
 		_deaths_blue += 1
 		_deaths_progress_bar_blue.value = _win_kill_count - _deaths_blue
+		_hud.get_node("HBoxContainer/ProgressBarBlue").value  = _deaths_progress_bar_blue.value
+
 		if _spawn_timer_blue.is_stopped():
 			_spawn_timer_blue.start()
 	else:
 		_deaths_red += 1
 		_deaths_progress_bar_red.value = _win_kill_count - _deaths_red
+		_hud.get_node("HBoxContainer/ProgressBarRed").value  = _deaths_progress_bar_red.value
+
 		if _spawn_timer_red.is_stopped():
 			_spawn_timer_red.start()
 	
@@ -130,12 +134,15 @@ func _spawn_initial_ships() -> void:
 
 func _show_level_summary_screen() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CONFINED
-	get_tree().paused = true
+	#get_tree().paused = true
 	
 	if _deaths_blue < _deaths_red:
-		_winner_label.text = "! Blue Wins !"
+		Globals.summarytext = "! Blue Wins !"
+	#	_winner_label.text = "! Blue Wins !"
 	else:
-		_winner_label.text = "! Red Wins !"
+		Globals.summarytext = "! Red Wins !"
+	#	_winner_label.text = "! Red Wins !"
 	
-	_summary_screen.show()
+	#_summary_screen.show()
+	SceneSwitcher.transition_to_summary_menu()
 

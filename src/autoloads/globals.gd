@@ -7,3 +7,4 @@ var joyRY =0
 
 var hops =0
 var time =0.0
+var summarytext = ""

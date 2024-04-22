@@ -52,6 +52,8 @@ script = ExtResource("2")
 
 [node name="JoystickBody" type="StaticBody3D" parent="JoystickOrigin/InteractableJoystick"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.1)
+collision_layer = 0
+collision_mask = 0
 
 [node name="BarCollision" type="CollisionShape3D" parent="JoystickOrigin/InteractableJoystick/JoystickBody"]
 shape = SubResource("3")
@@ -73,7 +75,7 @@ surface_material_override/0 = ExtResource("3")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.2)
 
 [node name="InteractableHandle" type="RigidBody3D" parent="JoystickOrigin/InteractableJoystick/HandleOrigin"]
-collision_layer = 262144
+collision_layer = 0
 collision_mask = 0
 freeze = true
 script = ExtResource("4")
@@ -83,6 +85,7 @@ picked_up_layer = 0
 shape = SubResource("7")
 
 [node name="HandPoseArea" parent="JoystickOrigin/InteractableJoystick/HandleOrigin/InteractableHandle" instance=ExtResource("5_7eu3q")]
+collision_layer = 0
 left_pose = ExtResource("6_w0c7s")
 right_pose = ExtResource("7_cvp1w")
 

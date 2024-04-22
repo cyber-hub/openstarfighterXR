@@ -4,7 +4,7 @@ class_name LevelHoops
 var _hoops_total: int = 0
 var _hoops_collected: int = 0
 var _time: float
-
+var labeltext = " Hoops Collected in "
 
 #@onready var _label_time: Label = $CanvasLayer/VBoxContainer/LabelTime
 #@onready var _label_counter: Label = $CanvasLayer/VBoxContainer/LabelCounter
@@ -68,6 +68,7 @@ func _show_level_summary_screen() -> void:
 	set_physics_process(false) # just to stop the stopwatch
 	Input.mouse_mode = Input.MOUSE_MODE_CONFINED
 	#get_tree().paused = true
+	Globals.summarytext = str(Globals.hops) + labeltext + str(Globals.time) + "s"
 	SceneSwitcher.transition_to_summary_menu()
 	#_summary_screen.get_node("Viewport2Din3D/Viewport").get_scene_instance().
 	#_summary_screen.get_scene_instance().show_summary(100)
